@@ -14,20 +14,14 @@
           </tr>
         </thead>
         <tbody>
-            @forelse ($projects as $project)
             <tr>
                 <th scope="row">{{$project->id}}</th>
                 <td>{{$project->title}}</td>
                 <td>{{$project->description}}</td>
                 <td>{{$project->url}}</td>
                 <td>{{$project->slug}}</td>
-                <td><a href="{{route('admin.projects.show',$project)}}">Mostra dettagli</a></td>
-
               </tr>
-            @empty
-                <h1>Nessun progetto presente</h1>
-            @endforelse 
-                
+           
           
         
         
