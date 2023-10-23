@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+  <a href="{{route('admin.projects.index')}}"><button class="btn btn-primary my-5">ritorna alla lista progetti </button>
+  </a>
 
     <table class="table">
         <thead>
