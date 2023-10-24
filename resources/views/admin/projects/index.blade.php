@@ -3,6 +3,8 @@
 @section('content')
 <div class="container">
 
+  <a class="btn btn-outline-success my-3" href="{{route('admin.projects.create')}}">Crea progetto</a>
+
     <table class="table">
         <thead>
           <tr>
@@ -21,7 +23,9 @@
                 <td>{{$project->description}}</td>
                 <td>{{$project->url}}</td>
                 <td>{{$project->slug}}</td>
-                <td><a href="{{route('admin.projects.show',$project)}}">Mostra dettagli</a></td>
+                <td><a class="btn btn-success" href="{{route('admin.projects.show',$project)}}">Mostra dettagli</a></td>
+                <td><a class="btn btn-primary" href="{{route('admin.projects.edit',$project)}}">Modifica dettagli</a></td>
+
 
               </tr>
             @empty

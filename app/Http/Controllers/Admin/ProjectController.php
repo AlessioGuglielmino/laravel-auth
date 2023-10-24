@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,11 +22,11 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *  *@return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view("admin.projects.create");
     }
 
     /**
@@ -36,14 +37,25 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();    
+        $project = new Project();
+
+
+        $project ->title = $data["title"];
+        $project ->description = $data["description"];
+        $project ->url = $data["url"];
+        $project ->slug = Str::slug($project->title );
+
+        $project -> save();
+
+        return redirect()->route("admin.projects.show", $project);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function show(Project $project)
     {
@@ -54,11 +66,12 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function edit(Project $project)
     {
-        //
+        return view("admin.projects.edit" ,compact('project'));
+
     }
 
     /**
@@ -70,7 +83,16 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->all();
+
+        $project ->title = $data["title"];
+        $project ->description = $data["description"];
+        $project ->url = $data["url"];
+        $project ->slug = Str::slug($project->title );
+
+        $project -> save();
+        return redirect()->route("admin.projects.show", $project);
+
     }
 
     /**
