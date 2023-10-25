@@ -25,13 +25,12 @@
                 <td>{{$project->slug}}</td>
                 <td><a class="btn btn-success" href="{{route('admin.projects.show',$project)}}">Mostra dettagli</a></td>
                 <td><a class="btn btn-primary" href="{{route('admin.projects.edit',$project)}}">Modifica dettagli</a></td>
+                <td>       <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-project-modal-{{$project->id}}">
+                    Elimina Progetto
+                  </button>   </td>
 
-                <form action="" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <td><a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target="delete-project-modal-{{$project->id}}"  >Elimina progetto</a></td>
-
-                </form>
+             
 
 
 
@@ -54,10 +53,7 @@
 @foreach ($projects as $project)
     
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="delete-project-modal-{{$project->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -72,8 +68,15 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Elimina</button>
-      </div>
+      <form action="{{route('admin.projects.destroy' ,$project)}}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                <button class="btn btn-danger">
+                  Elimina progetto
+
+                  </button>
+                </form> 
+                 </div>
     </div>
   </div>
 </div>
